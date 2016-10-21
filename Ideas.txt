@@ -1,0 +1,117 @@
+Project Battle Arena (Working Title)
+
+TODO
+Make level editor
+	Be able to place blocks - done
+	Be able to select blocks(for placing traps) - done
+		Have block(like in tetris) where middle is transparent
+		Place block on top of block to show selection
+	Have restricted number of items
+
+Make game play
+	Implement physics based movement - done'ish
+	Make sure friction causes max speed
+	Test Ice/Sludge friction - done'ish
+	Make traps hidden until collide
+		Should only be a visual thing
+	Make phases of the game
+		Game phase
+		Design phase
+	Intro screen
+	Login screen (Create character/name)
+	Game screen
+	Design screen
+	
+	Make Spawn actually spawn
+		Check if players are connected 
+	
+	Make initial weapon
+		Check/adjust knockback
+		
+Make multiplayer
+	Implement multiplayer connection
+	Send map updates per round
+	Send player info
+	
+	
+Make excel document and draw starting arenas
+	Triangle
+	Square
+	Pentagon
+	...
+
+
+2-4 person arena
+Square 5-7x5-7
+
+Each round, each player gets 5 blocks to place
+	3 ground blocks
+	2 User chosen
+	
+Blocks 
+	Ground
+	Trap
+		Fall blocks
+			The block falls when a player steps on it.
+		Ice block
+			The block turns to ice, when a player steps on it.
+			Ice removes all friction, so the player slides
+		Spike block
+			When a player steps on the block, the player gets stuck on spikes from the ground
+
+Player controls
+	The player moves around with the arrow keys/wasd
+	The player attacks with space(maybe mouse button(more precise attacks - still on the cardinal directions))
+	Should the player be able to jump?
+	
+	Technical:
+		Movement should be physics based
+		Capsule collider on the player indicates collision with ground/traps
+		Add speed using arrow keys/wasd
+		while movement is not null, find direction and update animation
+		Player can not attack while adding movement (could make attacks possible on ice)
+		
+		Should the camera angle be different per player
+			i.e. should the players see from each of his corners
+			
+		Should movement be restricted to cardinal directions? or be octo directional?
+		
+Weapons
+	Each player can select a weapon on battle start
+	When hit by a weapon, a knockback value is applied to the player (Used to push players of the arena)
+	Weapons available:
+		Sword
+			Hit a half circle in player facing direction (can hit multiple players)
+		Spear
+			Hits a straight line forward (better range than sword)
+		Bow
+			Fires an arrow forward (possible max distance)(Should have less stopping power than melee weapons)
+			
+Lose condition
+	Falling off the arena platform
+	(Should players have health)
+	(Health could also result in staggering)
+	
+Arena platform
+	Battle platform consist of X blocks
+	Each block can be stood upon
+	4 blocks (one in each corner) indicates starting positions
+		These cannot be traps
+		(possibly 3x3 around the starting area)(would need bigger arena)
+	Technical
+		Each block is sized as a primitive cube in Unity
+		Each block have a collider to work with the player/game/traps
+		Each block can have a trap on it
+			Trap can be either active or inactive
+			(one use of multiple uses)
+		Should the player be able to see where his own placed traps are placed?
+		Should trap locations carry over between rounds (if unused only? or always)
+		Should trap locations be revealed between rounds (kind of needed, otherwise traps could be placed on top of each other (Could be a tactic to try to find trap locations))
+			
+		Arena editor
+			Full gridbased map have a collider to be used by the level generation
+			This collider is exclusivly used to recognize clicks
+			The arena should not be destroyed between level
+				Thus the level editor (between rounds) can use the same arena
+			Should have a bar showing available blocks and block selection
+			
